@@ -11,30 +11,29 @@ function Formulario() {
     apellidoP: '',
   });
 
-  const hacerPeticion = async (a) => {
+ 
+  const hacerPeticion = async (e) =>{
     try {
-      let response;
-      switch (a) {
-        case 1:
-          response = await axios.get('http://localhost:4567/insertar', { datosFormulario });
-          break;
-        case 2:
-          response = await axios.get('http://localhost:4567/consultar', { datosFormulario });
-          break;
-        case 3:
-          response = await axios.get('http://localhost:4567/eliminar', { datosFormulario });
-          break;
-        case 4:
-          response = await axios.get('http://localhost:4567/editar', { datosFormulario });
-          break;
-        default:
-          break;
-      }
-      return response.data;
+        if(e==1){
+            const response = await axios.get('http://localhost:4567/insertar',{params:datosFormulario})
+            return response.data
+        }
+        if(e==2){
+            const response = await axios.post('http://localhost:4567/consultar',{params:datosFormulario})
+            return response.data
+        }
+        if(e==3){
+            const response = await axios.delete('http://localhost:4567/borrar',{params:datosFormulario})
+            return response.data
+        }
+        if(e==4){
+            const response = await axios.get('http://localhost:4567/editar',{params:datosFormulario})
+            return response.data
+        }
     } catch (error) {
-      throw error;
+        throw error
     }
-  };
+}
 
   const procesarFormulario = async (evento) => {
     evento.preventDefault();
@@ -60,15 +59,15 @@ function Formulario() {
     }
   };
 
-  const consultar = async (evento) => {
-    evento.preventDefault();
+  const consultar = async (e)=>{
+    e.preventDefault()
     try {
-      const response = await hacerPeticion(2);
-      console.log(response);
+        const response = await hacerPeticion(2)
+        console.log(response)
     } catch (error) {
-      console.log(error);
+        console.log(error);
     }
-  };
+}
 
   const borrar = async (evento) => {
     evento.preventDefault();
