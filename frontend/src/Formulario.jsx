@@ -19,7 +19,7 @@ function Formulario() {
             return response.data
         }
         if(e==2){
-            const response = await axios.post('http://localhost:4567/consultar',{params:datosFormulario})
+            const response = await axios.get('http://localhost:4567/consultar',{params:datosFormulario})
             return response.data
         }
         if(e==3){
@@ -59,8 +59,8 @@ function Formulario() {
     }
   };
 
-  const consultar = async (e)=>{
-    e.preventDefault()
+  const consultar = async (evento)=>{
+    evento.preventDefault()
     try {
         const response = await hacerPeticion(2)
         console.log(response)

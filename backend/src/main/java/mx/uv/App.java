@@ -39,7 +39,7 @@ public class App {
             return "Datos insertados";
         });
 
-       post("/consultar", (request, response) -> {
+       get("/consultar", (request, response) -> {
             return "Nombre: " + nombre + ", Apellido Paterno: " + apellidoP + ", Apellido Materno: " + apellidoM;
         });
 
